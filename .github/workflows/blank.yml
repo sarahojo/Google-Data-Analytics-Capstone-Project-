@@ -1,0 +1,445 @@
+Cyclistic Capstone Project
+Sarah Ojo
+2022-08-20
+Cyclistic Analysis
+Business Task
+To improve profitability, we have been tasked with analyzing the Cyclistic historical bike trip data to identify trends and design marketing strategies aimed at converting casual riders into annual members
+
+Data Collection
+In his step, I will import data into RStudio using the read_csv function. First we have to install packages needed for this step. So I will install and load the tidverse package.
+
+install.packages("Rtools", repos = "http://cran.us.r-project.org")
+## Installing package into 'C:/Users/KIDATECH/AppData/Local/R/win-library/4.2'
+## (as 'lib' is unspecified)
+## Warning: package 'Rtools' is not available for this version of R
+## 
+## A version of this package for your version of R might be available elsewhere,
+## see the ideas at
+## https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages
+install.packages("tidyverse", repos = "http://cran.us.r-project.org")
+## Installing package into 'C:/Users/KIDATECH/AppData/Local/R/win-library/4.2'
+## (as 'lib' is unspecified)
+## package 'tidyverse' successfully unpacked and MD5 sums checked
+## 
+## The downloaded binary packages are in
+##  C:\Users\KIDATECH\AppData\Local\Temp\RtmpEXUXXu\downloaded_packages
+library("tidyverse")
+## ── Attaching packages
+## ───────────────────────────────────────
+## tidyverse 1.3.2 ──
+## ✔ ggplot2 3.3.6     ✔ purrr   0.3.4
+## ✔ tibble  3.1.8     ✔ dplyr   1.0.9
+## ✔ tidyr   1.2.0     ✔ stringr 1.4.1
+## ✔ readr   2.1.2     ✔ forcats 0.5.2
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+library(readr)
+July_2022_Cyclistic_Data <- read_csv("202207-divvy-tripdata.csv")
+## Rows: 823488 Columns: 13
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: ","
+## chr  (7): ride_id, rideable_type, start_station_name, start_station_id, end_...
+## dbl  (4): start_lat, start_lng, end_lat, end_lng
+## dttm (2): started_at, ended_at
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+June_2022_Cyclistic_Data <- read_csv("202206-divvy-tripdata.csv")
+## Rows: 769204 Columns: 13
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: ","
+## chr  (7): ride_id, rideable_type, start_station_name, start_station_id, end_...
+## dbl  (4): start_lat, start_lng, end_lat, end_lng
+## dttm (2): started_at, ended_at
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+May_2022_Cyclistic_Data <- read_csv("202205-divvy-tripdata.csv")
+## Rows: 634858 Columns: 13
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: ","
+## chr  (7): ride_id, rideable_type, start_station_name, start_station_id, end_...
+## dbl  (4): start_lat, start_lng, end_lat, end_lng
+## dttm (2): started_at, ended_at
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+April_2022_Cyclistic_Data <- read_csv("202204-divvy-tripdata.csv")
+## Rows: 371249 Columns: 13
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: ","
+## chr  (7): ride_id, rideable_type, start_station_name, start_station_id, end_...
+## dbl  (4): start_lat, start_lng, end_lat, end_lng
+## dttm (2): started_at, ended_at
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+March_2022_Cyclistic_Data <- read_csv("202203-divvy-tripdata.csv")
+## Rows: 284042 Columns: 13
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: ","
+## chr  (7): ride_id, rideable_type, start_station_name, start_station_id, end_...
+## dbl  (4): start_lat, start_lng, end_lat, end_lng
+## dttm (2): started_at, ended_at
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Feb_2022_Cyclistic_Data <- read_csv("202202-divvy-tripdata.csv")
+## Rows: 115609 Columns: 13
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: ","
+## chr  (7): ride_id, rideable_type, start_station_name, start_station_id, end_...
+## dbl  (4): start_lat, start_lng, end_lat, end_lng
+## dttm (2): started_at, ended_at
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Jan_2022_Cyclistic_Data <- read_csv("202201-divvy-tripdata.csv")
+## Rows: 103770 Columns: 13
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: ","
+## chr  (7): ride_id, rideable_type, start_station_name, start_station_id, end_...
+## dbl  (4): start_lat, start_lng, end_lat, end_lng
+## dttm (2): started_at, ended_at
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Dec_2021_Cyclistic_Data <- read_csv("202112-divvy-tripdata.csv")
+## Rows: 247540 Columns: 13
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: ","
+## chr  (7): ride_id, rideable_type, start_station_name, start_station_id, end_...
+## dbl  (4): start_lat, start_lng, end_lat, end_lng
+## dttm (2): started_at, ended_at
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Oct_2021_Cyclistic_Data <- read_csv("202110-divvy-tripdata.csv")
+## Rows: 631226 Columns: 13
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: ","
+## chr  (7): ride_id, rideable_type, start_station_name, start_station_id, end_...
+## dbl  (4): start_lat, start_lng, end_lat, end_lng
+## dttm (2): started_at, ended_at
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Sept_2021_Cyclistic_Data <- read_csv("202109-divvy-tripdata.csv")
+## Rows: 756147 Columns: 13
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: ","
+## chr  (7): ride_id, rideable_type, start_station_name, start_station_id, end_...
+## dbl  (4): start_lat, start_lng, end_lat, end_lng
+## dttm (2): started_at, ended_at
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Aug_2021_Cyclistic_Data <- read_csv("202108-divvy-tripdata.csv")
+## Rows: 804352 Columns: 13
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: ","
+## chr  (7): ride_id, rideable_type, start_station_name, start_station_id, end_...
+## dbl  (4): start_lat, start_lng, end_lat, end_lng
+## dttm (2): started_at, ended_at
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Nov_2021_Cyclistic_Data <- read_csv("202111-divvy-tripdata.csv")
+## Rows: 359978 Columns: 13
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: ","
+## chr  (7): ride_id, rideable_type, start_station_name, start_station_id, end_...
+## dbl  (4): start_lat, start_lng, end_lat, end_lng
+## dttm (2): started_at, ended_at
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Combine into a Single File
+We have 12 different files, we need to have a single view of the data for the period under review to enable us analyse, visualize and make decisions. Let us check all the columns for irregularities and correct them megrge into a single file.
+
+colnames(July_2022_Cyclistic_Data)
+##  [1] "ride_id"            "rideable_type"      "started_at"        
+##  [4] "ended_at"           "start_station_name" "start_station_id"  
+##  [7] "end_station_name"   "end_station_id"     "start_lat"         
+## [10] "start_lng"          "end_lat"            "end_lng"           
+## [13] "member_casual"
+colnames(June_2022_Cyclistic_Data)
+##  [1] "ride_id"            "rideable_type"      "started_at"        
+##  [4] "ended_at"           "start_station_name" "start_station_id"  
+##  [7] "end_station_name"   "end_station_id"     "start_lat"         
+## [10] "start_lng"          "end_lat"            "end_lng"           
+## [13] "member_casual"
+colnames(May_2022_Cyclistic_Data)
+##  [1] "ride_id"            "rideable_type"      "started_at"        
+##  [4] "ended_at"           "start_station_name" "start_station_id"  
+##  [7] "end_station_name"   "end_station_id"     "start_lat"         
+## [10] "start_lng"          "end_lat"            "end_lng"           
+## [13] "member_casual"
+colnames(April_2022_Cyclistic_Data)
+##  [1] "ride_id"            "rideable_type"      "started_at"        
+##  [4] "ended_at"           "start_station_name" "start_station_id"  
+##  [7] "end_station_name"   "end_station_id"     "start_lat"         
+## [10] "start_lng"          "end_lat"            "end_lng"           
+## [13] "member_casual"
+colnames(March_2022_Cyclistic_Data)
+##  [1] "ride_id"            "rideable_type"      "started_at"        
+##  [4] "ended_at"           "start_station_name" "start_station_id"  
+##  [7] "end_station_name"   "end_station_id"     "start_lat"         
+## [10] "start_lng"          "end_lat"            "end_lng"           
+## [13] "member_casual"
+colnames(Feb_2022_Cyclistic_Data)
+##  [1] "ride_id"            "rideable_type"      "started_at"        
+##  [4] "ended_at"           "start_station_name" "start_station_id"  
+##  [7] "end_station_name"   "end_station_id"     "start_lat"         
+## [10] "start_lng"          "end_lat"            "end_lng"           
+## [13] "member_casual"
+colnames(Jan_2022_Cyclistic_Data)
+##  [1] "ride_id"            "rideable_type"      "started_at"        
+##  [4] "ended_at"           "start_station_name" "start_station_id"  
+##  [7] "end_station_name"   "end_station_id"     "start_lat"         
+## [10] "start_lng"          "end_lat"            "end_lng"           
+## [13] "member_casual"
+colnames(Dec_2021_Cyclistic_Data)
+##  [1] "ride_id"            "rideable_type"      "started_at"        
+##  [4] "ended_at"           "start_station_name" "start_station_id"  
+##  [7] "end_station_name"   "end_station_id"     "start_lat"         
+## [10] "start_lng"          "end_lat"            "end_lng"           
+## [13] "member_casual"
+colnames(Nov_2021_Cyclistic_Data)
+##  [1] "ride_id"            "rideable_type"      "started_at"        
+##  [4] "ended_at"           "start_station_name" "start_station_id"  
+##  [7] "end_station_name"   "end_station_id"     "start_lat"         
+## [10] "start_lng"          "end_lat"            "end_lng"           
+## [13] "member_casual"
+colnames(Oct_2021_Cyclistic_Data)
+##  [1] "ride_id"            "rideable_type"      "started_at"        
+##  [4] "ended_at"           "start_station_name" "start_station_id"  
+##  [7] "end_station_name"   "end_station_id"     "start_lat"         
+## [10] "start_lng"          "end_lat"            "end_lng"           
+## [13] "member_casual"
+colnames(Sept_2021_Cyclistic_Data)
+##  [1] "ride_id"            "rideable_type"      "started_at"        
+##  [4] "ended_at"           "start_station_name" "start_station_id"  
+##  [7] "end_station_name"   "end_station_id"     "start_lat"         
+## [10] "start_lng"          "end_lat"            "end_lng"           
+## [13] "member_casual"
+colnames(Aug_2021_Cyclistic_Data)
+##  [1] "ride_id"            "rideable_type"      "started_at"        
+##  [4] "ended_at"           "start_station_name" "start_station_id"  
+##  [7] "end_station_name"   "end_station_id"     "start_lat"         
+## [10] "start_lng"          "end_lat"            "end_lng"           
+## [13] "member_casual"
+library(lubridate)
+## 
+## Attaching package: 'lubridate'
+## The following objects are masked from 'package:base':
+## 
+##     date, intersect, setdiff, union
+library(dplyr)
+Cyclistic_all_year <- bind_rows (July_2022_Cyclistic_Data, June_2022_Cyclistic_Data, May_2022_Cyclistic_Data, April_2022_Cyclistic_Data, March_2022_Cyclistic_Data, Feb_2022_Cyclistic_Data, Jan_2022_Cyclistic_Data, Dec_2021_Cyclistic_Data, Nov_2021_Cyclistic_Data, Oct_2021_Cyclistic_Data, Sept_2021_Cyclistic_Data, Aug_2021_Cyclistic_Data)
+head(Cyclistic_all_year)
+## # A tibble: 6 × 13
+##   ride_id        ridea…¹ started_at          ended_at            start…² start…³
+##   <chr>          <chr>   <dttm>              <dttm>              <chr>   <chr>  
+## 1 954144C2F67B1… classi… 2022-07-05 08:12:47 2022-07-05 08:24:32 Ashlan… 13224  
+## 2 292E027607D21… classi… 2022-07-26 12:53:38 2022-07-26 12:55:31 Buckin… 15541  
+## 3 57765852588AD… classi… 2022-07-03 13:58:49 2022-07-03 14:06:32 Buckin… 15541  
+## 4 B5B6BE4431459… classi… 2022-07-31 17:44:21 2022-07-31 18:42:50 Buckin… 15541  
+## 5 A4C331F2A00E7… classi… 2022-07-13 19:49:06 2022-07-13 20:15:24 Wabash… TA1307…
+## 6 579D73BE2ED88… electr… 2022-07-01 17:04:35 2022-07-01 17:13:18 Despla… 15535  
+## # … with 7 more variables: end_station_name <chr>, end_station_id <chr>,
+## #   start_lat <dbl>, start_lng <dbl>, end_lat <dbl>, end_lng <dbl>,
+## #   member_casual <chr>, and abbreviated variable names ¹​rideable_type,
+## #   ²​start_station_name, ³​start_station_id
+str(Cyclistic_all_year)
+## spec_tbl_df [5,901,463 × 13] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+##  $ ride_id           : chr [1:5901463] "954144C2F67B1932" "292E027607D218B6" "57765852588AD6E0" "B5B6BE44314590E6" ...
+##  $ rideable_type     : chr [1:5901463] "classic_bike" "classic_bike" "classic_bike" "classic_bike" ...
+##  $ started_at        : POSIXct[1:5901463], format: "2022-07-05 08:12:47" "2022-07-26 12:53:38" ...
+##  $ ended_at          : POSIXct[1:5901463], format: "2022-07-05 08:24:32" "2022-07-26 12:55:31" ...
+##  $ start_station_name: chr [1:5901463] "Ashland Ave & Blackhawk St" "Buckingham Fountain (Temp)" "Buckingham Fountain (Temp)" "Buckingham Fountain (Temp)" ...
+##  $ start_station_id  : chr [1:5901463] "13224" "15541" "15541" "15541" ...
+##  $ end_station_name  : chr [1:5901463] "Kingsbury St & Kinzie St" "Michigan Ave & 8th St" "Michigan Ave & 8th St" "Woodlawn Ave & 55th St" ...
+##  $ end_station_id    : chr [1:5901463] "KA1503000043" "623" "623" "TA1307000164" ...
+##  $ start_lat         : num [1:5901463] 41.9 41.9 41.9 41.9 41.9 ...
+##  $ start_lng         : num [1:5901463] -87.7 -87.6 -87.6 -87.6 -87.6 ...
+##  $ end_lat           : num [1:5901463] 41.9 41.9 41.9 41.8 41.9 ...
+##  $ end_lng           : num [1:5901463] -87.6 -87.6 -87.6 -87.6 -87.7 ...
+##  $ member_casual     : chr [1:5901463] "member" "casual" "casual" "casual" ...
+##  - attr(*, "spec")=
+##   .. cols(
+##   ..   ride_id = col_character(),
+##   ..   rideable_type = col_character(),
+##   ..   started_at = col_datetime(format = ""),
+##   ..   ended_at = col_datetime(format = ""),
+##   ..   start_station_name = col_character(),
+##   ..   start_station_id = col_character(),
+##   ..   end_station_name = col_character(),
+##   ..   end_station_id = col_character(),
+##   ..   start_lat = col_double(),
+##   ..   start_lng = col_double(),
+##   ..   end_lat = col_double(),
+##   ..   end_lng = col_double(),
+##   ..   member_casual = col_character()
+##   .. )
+##  - attr(*, "problems")=<externalptr>
+colnames(Cyclistic_all_year)
+##  [1] "ride_id"            "rideable_type"      "started_at"        
+##  [4] "ended_at"           "start_station_name" "start_station_id"  
+##  [7] "end_station_name"   "end_station_id"     "start_lat"         
+## [10] "start_lng"          "end_lat"            "end_lng"           
+## [13] "member_casual"
+nrow(Cyclistic_all_year)
+## [1] 5901463
+glimpse(Cyclistic_all_year$started_at)
+##  POSIXct[1:5901463], format: "2022-07-05 08:12:47" "2022-07-26 12:53:38" "2022-07-03 13:58:49" ...
+summary(Cyclistic_all_year)
+##    ride_id          rideable_type        started_at                    
+##  Length:5901463     Length:5901463     Min.   :2021-08-01 00:00:04.00  
+##  Class :character   Class :character   1st Qu.:2021-09-27 12:35:12.50  
+##  Mode  :character   Mode  :character   Median :2022-02-14 14:10:08.00  
+##                                        Mean   :2022-01-31 21:50:42.24  
+##                                        3rd Qu.:2022-06-05 15:29:40.50  
+##                                        Max.   :2022-07-31 23:59:58.00  
+##                                                                        
+##     ended_at                      start_station_name start_station_id  
+##  Min.   :2021-08-01 00:03:11.00   Length:5901463     Length:5901463    
+##  1st Qu.:2021-09-27 12:54:02.50   Class :character   Class :character  
+##  Median :2022-02-14 14:20:23.00   Mode  :character   Mode  :character  
+##  Mean   :2022-01-31 22:10:35.61                                        
+##  3rd Qu.:2022-06-05 15:54:48.00                                        
+##  Max.   :2022-08-04 13:53:01.00                                        
+##                                                                        
+##  end_station_name   end_station_id       start_lat       start_lng     
+##  Length:5901463     Length:5901463     Min.   :41.64   Min.   :-87.84  
+##  Class :character   Class :character   1st Qu.:41.88   1st Qu.:-87.66  
+##  Mode  :character   Mode  :character   Median :41.90   Median :-87.64  
+##                                        Mean   :41.90   Mean   :-87.65  
+##                                        3rd Qu.:41.93   3rd Qu.:-87.63  
+##                                        Max.   :45.64   Max.   :-73.80  
+##                                                                        
+##     end_lat         end_lng       member_casual     
+##  Min.   :41.39   Min.   :-88.97   Length:5901463    
+##  1st Qu.:41.88   1st Qu.:-87.66   Class :character  
+##  Median :41.90   Median :-87.64   Mode  :character  
+##  Mean   :41.90   Mean   :-87.65                     
+##  3rd Qu.:41.93   3rd Qu.:-87.63                     
+##  Max.   :42.37   Max.   :-87.50                     
+##  NA's   :5590    NA's   :5590
+Data Cleaning and Manipulation
+In this step, I will create a new column to calculate the length of ride, this will be used as a metrics for visualization later on. I will also add the date field to enable us aggregate data by day/month. The date field will be the start date of each trip.
+
+Cyclistic_all_year$ride_duration <- (Cyclistic_all_year$ended_at - Cyclistic_all_year$started_at)
+
+Cyclistic_all_year$ride_duration <- as.numeric(as.character(Cyclistic_all_year$ride_duration))
+is.numeric(Cyclistic_all_year$ride_duration)
+## [1] TRUE
+Cyclistic_all_year$date <- as.Date(Cyclistic_all_year$started_at) #The default format is yyyy-mm-dd
+Cyclistic_all_year$month <- format(as.Date(Cyclistic_all_year$date), "%m")
+Cyclistic_all_year$day <- format(as.Date(Cyclistic_all_year$date), "%d")
+Cyclistic_all_year$year <- format(as.Date(Cyclistic_all_year$date), "%Y")
+Cyclistic_all_year$day_of_week <- format(as.Date(Cyclistic_all_year$date), "%A")
+I will remove data for rides whose length are either negative or zero. To do that, I will create another dataframe from the Cyclistic_all_year which we will continue to use till the end of this project
+
+V2 <- Cyclistic_all_year[Cyclistic_all_year$ride_duration>0,]
+Descriptive Analysis
+Next, we will calculate the statistical values of the ride duration i.e mean, median, mode, quartile, minimum and maximum value
+
+summary(V2$ride_duration)
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##       1     370     657    1194    1189 2497750
+We will compare members and casual riders duration, then compare by days of the week
+
+aggregate(V2$ride_duration ~ V2$member_casual, FUN = mean)
+##   V2$member_casual V2$ride_duration
+## 1           casual        1752.9596
+## 2           member         776.0127
+aggregate(V2$ride_duration ~ V2$member_casual, FUN = median)
+##   V2$member_casual V2$ride_duration
+## 1           casual              864
+## 2           member              541
+aggregate(V2$ride_duration ~ V2$member_casual, FUN = max)
+##   V2$member_casual V2$ride_duration
+## 1           casual          2497750
+## 2           member            93594
+aggregate(V2$ride_duration ~ V2$member_casual, FUN = min)
+##   V2$member_casual V2$ride_duration
+## 1           casual                1
+## 2           member                1
+V2$day_of_week <- ordered(V2$day_of_week, levels=c("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"))
+aggregate(V2$ride_duration ~ V2$member_casual + V2$day_of_week, FUN = mean)
+##    V2$member_casual V2$day_of_week V2$ride_duration
+## 1            casual         Sunday        2038.3645
+## 2            member         Sunday         877.9249
+## 3            casual         Monday        1783.4532
+## 4            member         Monday         754.0940
+## 5            casual        Tuesday        1527.3643
+## 6            member        Tuesday         728.8203
+## 7            casual      Wednesday        1500.2268
+## 8            member      Wednesday         730.4306
+## 9            casual       Thursday        1571.9136
+## 10           member       Thursday         744.4289
+## 11           casual         Friday        1644.5874
+## 12           member         Friday         756.3981
+## 13           casual       Saturday        1910.3282
+## 14           member       Saturday         868.5031
+V2 %>% 
+  mutate(weekday = wday(started_at, label = TRUE)) %>%  #creates weekday field using wday()
+  group_by(member_casual, weekday) %>%  #groups by usertype and weekday
+  summarise(number_of_rides = n()                           #calculates the number of rides and average duration 
+  ,average_duration = mean(ride_duration)) %>%      # calculates the average duration
+  arrange(member_casual, weekday)   
+## `summarise()` has grouped output by 'member_casual'. You can override using the
+## `.groups` argument.
+## # A tibble: 14 × 4
+## # Groups:   member_casual [2]
+##    member_casual weekday number_of_rides average_duration
+##    <chr>         <ord>             <int>            <dbl>
+##  1 casual        Sun              475539            2038.
+##  2 casual        Mon              299626            1783.
+##  3 casual        Tue              273782            1527.
+##  4 casual        Wed              281757            1500.
+##  5 casual        Thu              316087            1572.
+##  6 casual        Fri              347599            1645.
+##  7 casual        Sat              527499            1910.
+##  8 member        Sun              417918             878.
+##  9 member        Mon              472359             754.
+## 10 member        Tue              523347             729.
+## 11 member        Wed              522582             730.
+## 12 member        Thu              522627             744.
+## 13 member        Fri              466647             756.
+## 14 member        Sat              453458             869.
+Visualization
+Its time to have a view of the analysis using the ggplot function. First, lets plot the number of rides by rider type
+
+V2 %>% 
+  mutate(weekday = wday(started_at, label = TRUE)) %>% 
+  group_by(member_casual, weekday) %>% 
+  summarise(number_of_rides = n()
+            ,average_duration = mean(ride_duration)) %>% 
+  arrange(member_casual, weekday)  %>% 
+  ggplot(aes(x = weekday, y = number_of_rides, fill = member_casual)) +
+  geom_col(position = "dodge")
+## `summarise()` has grouped output by 'member_casual'. You can override using the
+## `.groups` argument.
+ then, by average duration
+
+V2 %>% 
+  mutate(weekday = wday(started_at, label = TRUE)) %>% 
+  group_by(member_casual, weekday) %>% 
+  summarise(number_of_rides = n()
+            ,average_duration = mean(ride_duration)) %>% 
+  arrange(member_casual, weekday)  %>% 
+  ggplot(aes(x = weekday, y = average_duration, fill = member_casual)) +
+  geom_col(position = "dodge")
+## `summarise()` has grouped output by 'member_casual'. You can override using the
+## `.groups` argument.
+
+
+Export the Summary for Further Analysis
+Now we will create a csv file to use for visualization in Tableau
+
+counts <- aggregate(V2$ride_duration ~ V2$member_casual + V2$day_of_week, FUN = mean)
+view(counts)
+write.csv(counts, file = 'C:/Users/KIDATECH/Documents/R Projects/summary_data.csv')
